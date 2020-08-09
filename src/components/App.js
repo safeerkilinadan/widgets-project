@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import Accordion from './Accordion';
 import Search from './Search';
 import Dropdown from './Dropdown';
+import Translate from './Translate';
+import Route from './Route';
+import Header from './Header';
+
 
 
 const items = [
@@ -34,19 +38,43 @@ const options = [
     }
 ]
 
+
 export default () => {
 
     const [selected,setSelected] = useState(options[0]);
 
     return(
         <div>
+            <Header/>
+            <Route path="/">
+                <Accordion items = {items}/>
+            </Route>
+            <Route path="/dropdown">
+                <Dropdown 
+                    selected={selected}
+                    options={options}
+                    onSelectedChange={setSelected}
+                 /> 
+            </Route>
+            <Route path="/translate">
+                <Translate/> 
+            </Route>
+            <Route path="/list">
+                <Search/>
+            </Route>
+            {/* {showAccordion()}
+            {showDropdown()}
+            {showList()}
+            {showTranslate()} */}
             {/* <Accordion items={items}/> */}
             {/* <Search/> */}
-            <Dropdown 
+            {/* <Dropdown 
                 selected={selected}
                 options={options}
                 onSelectedChange={setSelected}
-            />
+            /> */}
+
+            {/* <Translate/> */}
         </div>
     )
 };
